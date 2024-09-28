@@ -1,0 +1,6 @@
+.DS_Store
+.ipynb_checkpoints/
+test_data/imces/
+test_data/msu/
+test_data/kgd/
+__pycache__/
