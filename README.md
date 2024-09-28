@@ -128,23 +128,6 @@ df.rename(columns={'temp': 't'}, inplace=True)
 df
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -260,42 +243,15 @@ if plot:
     dp.plot_timeseries(df.w, labels = labels, ylabel = 'w, м/с', 
                        filename = f'{output_path}/plots/{start.date()}-{stop.date()}_w_input_data_{avg_period}min.png')
 ```
-
-    Данные до обработки
-
-
-
     
 ![png](README_files/README_11_1.png)
-    
 
-
-    Данные до обработки
-
-
-
-    
 ![png](README_files/README_11_3.png)
-    
 
-
-    Данные до обработки
-
-
-
-    
 ![png](README_files/README_11_5.png)
-    
-
-
-    Данные до обработки
-
-
-
     
 ![png](README_files/README_11_7.png)
     
-
 
 # Обработка данных
 
@@ -342,46 +298,15 @@ if plot:
 
 ```
 
-    До фильтрации
-    После фильтрации
-
-
-
     
 ![png](README_files/README_19_1.png)
     
-
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
 ![png](README_files/README_19_3.png)
-    
-
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
+       
 ![png](README_files/README_19_5.png)
-    
-
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
-![png](README_files/README_19_7.png)
-    
-
-
+      
+![png](README_files/README_19_7.png) 
+   
 
 ```python
 df1 = pd.DataFrame({
@@ -404,25 +329,6 @@ pp.gates_filtration(w, limit_w, df_bins, logger=logger, inplace=True)
 ```
 
 
-
-
-    time
-    2024-08-18 01:00:00.009999872   -0.15
-    2024-08-18 01:00:00.020000000   -0.05
-    2024-08-18 01:00:00.029999872   -0.06
-    2024-08-18 01:00:00.040000000   -0.11
-    2024-08-18 01:00:00.049999872   -0.06
-                                     ... 
-    2024-08-20 00:59:59.760000000    0.65
-    2024-08-20 00:59:59.769999872    0.63
-    2024-08-20 00:59:59.780000000    0.58
-    2024-08-20 00:59:59.789999872    0.61
-    2024-08-20 00:59:59.800000000    0.57
-    Name: w, Length: 13848872, dtype: float64
-
-
-
-
 ```python
 if plot:
     title = 'Фильтрация "воротами"'
@@ -436,47 +342,19 @@ if plot:
     dp.plot_timeseries([df1.w, w], labels = labels, title = title, ylabel = 'w, м/с', 
                        filename = f'{output_path}/plots/{start.date()}-{stop.date()}_w_gates_filtration_{avg_period}min.png')
 ```
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
+ 
+   
 ![png](README_files/README_23_1.png)
     
 
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
 ![png](README_files/README_23_3.png)
     
 
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
 ![png](README_files/README_23_5.png)
     
 
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
 ![png](README_files/README_23_7.png)
     
-
-
 
 ```python
 df1 = pd.DataFrame({
@@ -503,170 +381,20 @@ if plot:
     dp.plot_timeseries([df1.w, df1_trend.w], labels = labels, ylabel = 'w, м/с',
                        filename = f'{output_path}/plots/{start.date()}-{stop.date()}_w_before_detrending_{avg_period}min.png')
 ```
-
-    Данные до детрендинга
-    Тренды до детрендинга
-
-
-
-    
+ 
+   
 ![png](README_files/README_26_1.png)
-    
-
-
-    Данные до детрендинга
-    Тренды до детрендинга
-
-
-
     
 ![png](README_files/README_26_3.png)
     
-
-
-    Данные до детрендинга
-    Тренды до детрендинга
-
-
-
-    
 ![png](README_files/README_26_5.png)
-    
-
-
-    Данные до детрендинга
-    Тренды до детрендинга
-
-
-
-    
+        
 ![png](README_files/README_26_7.png)
     
-
-
 
 ```python
 pp.detrend(df1, df_bins=df_bins, mode='dwm', logger=logger, inplace=True)
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>t</th>
-      <th>u</th>
-      <th>v</th>
-      <th>w</th>
-    </tr>
-    <tr>
-      <th>time</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2024-08-18 01:00:00.009999872</th>
-      <td>14.480536</td>
-      <td>0.102335</td>
-      <td>1.827842</td>
-      <td>-0.143909</td>
-    </tr>
-    <tr>
-      <th>2024-08-18 01:00:00.020000000</th>
-      <td>14.560536</td>
-      <td>0.032331</td>
-      <td>2.017850</td>
-      <td>-0.043909</td>
-    </tr>
-    <tr>
-      <th>2024-08-18 01:00:00.029999872</th>
-      <td>14.580537</td>
-      <td>0.012327</td>
-      <td>2.037858</td>
-      <td>-0.053909</td>
-    </tr>
-    <tr>
-      <th>2024-08-18 01:00:00.040000000</th>
-      <td>14.560537</td>
-      <td>-0.027677</td>
-      <td>2.167866</td>
-      <td>-0.103909</td>
-    </tr>
-    <tr>
-      <th>2024-08-18 01:00:00.049999872</th>
-      <td>14.530538</td>
-      <td>-0.097681</td>
-      <td>2.407873</td>
-      <td>-0.053909</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2024-08-20 00:59:59.760000000</th>
-      <td>14.313226</td>
-      <td>0.706072</td>
-      <td>2.959187</td>
-      <td>0.636990</td>
-    </tr>
-    <tr>
-      <th>2024-08-20 00:59:59.769999872</th>
-      <td>14.283226</td>
-      <td>0.876076</td>
-      <td>2.359185</td>
-      <td>0.616990</td>
-    </tr>
-    <tr>
-      <th>2024-08-20 00:59:59.780000000</th>
-      <td>14.283227</td>
-      <td>0.886080</td>
-      <td>2.389184</td>
-      <td>0.566989</td>
-    </tr>
-    <tr>
-      <th>2024-08-20 00:59:59.789999872</th>
-      <td>14.283228</td>
-      <td>0.986085</td>
-      <td>2.269182</td>
-      <td>0.596989</td>
-    </tr>
-    <tr>
-      <th>2024-08-20 00:59:59.800000000</th>
-      <td>14.213229</td>
-      <td>0.966089</td>
-      <td>2.239180</td>
-      <td>0.556989</td>
-    </tr>
-  </tbody>
-</table>
-<p>13848872 rows × 4 columns</p>
-</div>
-
-
 
 
 ```python
@@ -684,45 +412,15 @@ if plot:
     
 ```
 
-    Данные после детрендинга
-    Тренды после детрендинга
-
-
-
     
 ![png](README_files/README_28_1.png)
     
-
-
-    Данные после детрендинга
-    Тренды после детрендинга
-
-
-
-    
 ![png](README_files/README_28_3.png)
-    
-
-
-    Данные после детрендинга
-    Тренды после детрендинга
-
-
-
-    
+ 
 ![png](README_files/README_28_5.png)
-    
-
-
-    Данные после детрендинга
-    Тренды после детрендинга
-
-
-
-    
+  
 ![png](README_files/README_28_7.png)
     
-
 
 ## Фильтрация сигмами
 
@@ -749,46 +447,15 @@ if plot:
                        filename = f'{output_path}/plots/{start.date()}-{stop.date()}_w_sigmas_filtration_{avg_period}min.png')
 ```
 
-    До фильтрации
-    После фильтрации
 
-
-
-    
 ![png](README_files/README_31_1.png)
     
-
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
 ![png](README_files/README_31_3.png)
-    
-
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
+ 
 ![png](README_files/README_31_5.png)
-    
-
-
-    До фильтрации
-    После фильтрации
-
-
-
-    
+  
 ![png](README_files/README_31_7.png)
     
-
-
 
 ```python
 df1 = pd.DataFrame({
@@ -851,40 +518,12 @@ if plot:
                        filename = f'{output_path}/plots/{start.date()}-{stop.date()}_w_axis_rotations_{avg_period}min.png')
 ```
 
-    Данные до поворота
-    Данные после поворота
-    Средние до поворота
-    Средние после поворота
-
-
-
     
 ![png](README_files/README_43_1.png)
-    
-
-
-    Данные до поворота
-    Данные после поворота
-    Средние до поворота
-    Средние после поворота
-
-
-
-    
+   
 ![png](README_files/README_43_3.png)
     
-
-
-    Данные до поворота
-    Данные после поворота
-    Средние до поворота
-    Средние после поворота
-
-
-
-    
-![png](README_files/README_43_5.png)
-    
+![png](README_files/README_43_5.png)   
 
 
 ## Оценка качетсва 
@@ -899,14 +538,8 @@ if plot:
                        filename = f'{output_path}/quality/{start.date()}-{stop.date()}_counts_before_gapfilling_{avg_period}min.png')
 ```
 
-    Index(['t', 'u', 'v', 'w'], dtype='object')
 
-
-
-    
 ![png](README_files/README_45_1.png)
-    
-
 
 
 ```python
@@ -930,28 +563,11 @@ if plot:
 
 ```
 
-    None
-    uhl
 
-
-
-    
 ![png](README_files/README_46_1.png)
-    
-
-
-    None
-    avg
-    uhl
-    bhl
-
-
-
-    
+   
 ![png](README_files/README_46_3.png)
     
-
-
 
 ```python
 skew = dq.skewness(df1_rot, df_bins)
@@ -970,18 +586,8 @@ if plot:
                        filename = f'{output_path}/quality/plots/{start.date()}-{stop.date()}_skewness_{avg_period}min.png')
 ```
 
-    Index(['t', 'u', 'v', 'w'], dtype='object')
-    hl
-    None
-    sl
-    None
-
-
-
-    
+  
 ![png](README_files/README_47_1.png)
-    
-
 
 
 ```python
@@ -1001,17 +607,9 @@ if plot:
                        filename = f'{output_path}/quality/plots/{start.date()}-{stop.date()}_kurtosis_{avg_period}min.png')
 ```
 
-    Index(['t', 'u', 'v', 'w'], dtype='object')
-    uhl
-    usl
-
-
-
     
 ![png](README_files/README_48_1.png)
     
-
-
 
 ```python
 hard_flags = (data_availability_flags + skew_flags + kurt_flags)
@@ -1023,14 +621,8 @@ if plot:
                        filename = f'{output_path}/quality/plots/{start.date()}-{stop.date()}_hard_flags_{avg_period}min.png')
 ```
 
-    Index(['t', 'u', 'v', 'w'], dtype='object')
-
-
-
     
 ![png](README_files/README_49_1.png)
-    
-
 
 
 ```python
@@ -1052,22 +644,6 @@ ec.pulsations(df1_rot, df_bins=df_bins, inplace=True)
 ```
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1207,229 +783,56 @@ if output_plot:
         
 ```
 
-    None
-
-
-
     
 ![png](README_files/README_54_1.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_3.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_5.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_7.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_9.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_11.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_13.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_15.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_17.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_19.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_21.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_23.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_25.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_27.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_29.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_31.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_33.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_35.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_37.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_39.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_41.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_43.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_45.png)
-    
 
-
-    None
-
-
-
-    
 ![png](README_files/README_54_47.png)
-    
 
-
-    None
-
-
-
-    
-![png](README_files/README_54_49.png)
-    
+![png](README_files/README_54_49.png)    
 
 
 ## Закрытие логгера
@@ -1438,239 +841,4 @@ if output_plot:
 ```python
 logger.info('КОНЕЦ ОБРАБОТКИ')
 el.close_logger(logger)
-```
-
-
-```python
-
-```
-
-    None
-
-
-
-    
-![png](README_files/README_57_1.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_3.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_5.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_7.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_9.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_11.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_13.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_15.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_17.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_19.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_21.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_23.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_25.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_27.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_29.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_31.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_33.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_35.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_37.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_39.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_41.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_43.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_45.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_47.png)
-    
-
-
-    None
-
-
-
-    
-![png](README_files/README_57_49.png)
-    
-
-
-
-```python
-
 ```
