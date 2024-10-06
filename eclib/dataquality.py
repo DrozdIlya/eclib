@@ -42,7 +42,7 @@ def counts(df, df_bins=None, step=None, start=None, stop=None, prefix=None):
         
     df_count = df.groupby(df_bins, observed=True).count()
 
-    df_count.index = df_count.index.categories.left
+    df_count.index = df_count.index.map(lambda x: x.left)
 
     if prefix: 
         df_count = df_count.add_prefix('_count')
@@ -91,7 +91,7 @@ def kurtosis(df, df_bins=None, step=None, start=None, stop=None, prefix=None):
     
     df_kurt = df.groupby(df_bins, observed=True).agg(pd.Series.kurt)
 
-    df_kurt.index = df_kurt.index.categories.left
+    df_kurt.index = df_kurt.index.map(lambda x: x.left)
 
     if prefix: 
         df_kurt = df_kurt.add_prefix('_kurt')
@@ -140,7 +140,7 @@ def skewness(df, df_bins=None, step=None, start=None, stop=None, prefix=None):
         
     df_skew = df.groupby(df_bins, observed=True).skew()
 
-    df_skew.index = df_skew.index.categories.left
+    df_skew.index = df_skew.index.map(lambda x: x.left)
 
     if prefix: 
         df_skew = df_skew.add_prefix('_skew')
@@ -202,6 +202,6 @@ def angle_of_attack_counts(df, df_bins=None, step=None, start=None, stop=None, u
     ws = (df[u_name]**2+df[v_name]**2)**(1/2)
     angles = np.degrees(np.arctan(df[w_name]/ws))
     bad_angle_counts = ((angles < minaa) | (angles > maxaa)).groupby(df_bins, observed=True).sum()
-    bad_angle_counts.index = bad_angle_counts.index.categories.left
+    bad_angle_counts.index = bad_angle_counts.index.map(lambda x: x.left)
     
     return bad_angle_counts, angles

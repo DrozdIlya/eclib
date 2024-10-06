@@ -40,7 +40,7 @@ def means(df, df_bins=None, step=None, start=None, stop=None, prefix=False):
         
     df_mean = df.groupby(df_bins, observed=True).mean()
 
-    df_mean.index = df_mean.index.categories.left
+    df_mean.index = df_mean.index.map(lambda x: x.left)
 
     if prefix: 
         df_mean = df_mean.add_prefix('_mean')

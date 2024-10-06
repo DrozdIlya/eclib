@@ -20,14 +20,14 @@ import os
 # Настройка параметров обработки
 # ============================================================
 
-project_name = 'imces'  # Название проекта
-input_data = './test_data/imces/IMCES_M40_A40_*.nc'  # Шаблон файлов с исходными данными
-output_path = f'./{project_name}'  # Путь, куда будут сохраняться обработанные данные
-z = 40  # [m], Высота измерения
-friquency = 80  # [Hz], Частота исходных данных
-avg_period = 30 # [min], Период осреднения 
-start = pd.to_datetime('2024-08-18 01:00:00')  # Начало обрабатываемого периода 
-stop = pd.to_datetime('2024-08-20 01:00:00')  # Конец обрабатываемого периода
+# project_name = 'imces'  # Название проекта
+# input_data = './test_data/imces/IMCES_M40_A40_*.nc'  # Шаблон файлов с исходными данными
+# output_path = f'./{project_name}'  # Путь, куда будут сохраняться обработанные данные
+# z = 40  # [m], Высота измерения
+# friquency = 80  # [Hz], Частота исходных данных
+# avg_period = 30 # [min], Период осреднения 
+# start = pd.to_datetime('2024-08-18 01:00:00')  # Начало обрабатываемого периода 
+# stop = pd.to_datetime('2024-08-20 01:00:00')  # Конец обрабатываемого периода
 
 # project_name = 'kgd'  # Название проекта
 # input_data = './test_data/kgd/PIO_A36_*.nc'  # Шаблон файлов с исходными данными
@@ -38,20 +38,20 @@ stop = pd.to_datetime('2024-08-20 01:00:00')  # Конец обрабатыва�
 # start = pd.to_datetime('2023-11-01 00:00:00')  # Начало обрабатываемого периода 
 # stop = pd.to_datetime('2023-11-04 00:00:00')  # Конец обрабатываемого периода
 
-# project_name = 'msu'  # Название проекта
-# input_data = './test_data/msu/MSU_A3_*.nc'  # Шаблон файлов с исходными данными
-# output_path = f'./{project_name}'  # Путь, куда будут сохраняться обработанные данные
-# z = 18.8  # [m], Высота измерения
-# friquency = 20  # [Hz], Частота исходных данных
-# avg_period = 30 # [min], Период осреднения   
-# start = pd.to_datetime('2021-08-01 00:00:00')  # Начало обрабатываемого периода 
-# stop = pd.to_datetime('2021-08-04 00:00:00')  # Конец обрабатываемого периода
+project_name = 'msu'  # Название проекта
+input_data = './test_data/msu/MSU_A3_*.nc'  # Шаблон файлов с исходными данными
+output_path = f'./{project_name}'  # Путь, куда будут сохраняться обработанные данные
+z = 18.8  # [m], Высота измерения
+friquency = 20  # [Hz], Частота исходных данных
+avg_period = 30 # [min], Период осреднения   
+start = pd.to_datetime('2021-08-01 00:00:00')  # Начало обрабатываемого периода 
+stop = pd.to_datetime('2021-08-30 00:00:00')  # Конец обрабатываемого периода
 
 plot = True  # Отрисовка промежуточной визуализации
 show = False  # Вывод промежуточной визуализации
 output_plot = True  # Отрисовка выходных переменных
 output_show = False  # Вывод визуализации выходных переменных
-console_log = False  # Дублирование лога в консоль
+console_log = True  # Дублирование лога в консоль
 
 step = timedelta(minutes=avg_period) 
 stop += timedelta(microseconds=1)
@@ -130,6 +130,7 @@ logger.info('Считывание данных')
 
 df = dr.read_all_files(func = dr.nc_to_df, files_pattern = input_data, logger = logger)
 df.rename(columns = {'temp': 't'}, inplace = True)
+df = df[['t','u','v','w']]
 
 if plot:
     labels = 'Данные до обработки'
@@ -256,7 +257,7 @@ if plot:
                        filename = f'{output_path}/plots/{start.date()}-{stop.date()}_t_sigmas_filtration_{avg_period}min.png')
     dp.plot_timeseries([df1.u, u], labels = labels, ylabel = 'u, м/с', title = title, show = show,
                        filename = f'{output_path}/plots/{start.date()}-{stop.date()}_u_sigmas_filtration_{avg_period}min.png')
-    dp.plot_timeseries([df1.v, v], labels = labels, ylabel='v, м/с', title = title, show = show,
+    dp.plot_timeseries([df1.v, v], labels = labels, ylabel= 'v, м/с', title = title, show = show,
                        filename = f'{output_path}/plots/{start.date()}-{stop.date()}_v_sigmas_filtration_{avg_period}min.png')
     dp.plot_timeseries([df1.w, w], labels = labels, ylabel='w, м/с', title = title, show = show,
                        filename = f'{output_path}/plots/{start.date()}-{stop.date()}_w_sigmas_filtration_{avg_period}min.png')
@@ -322,7 +323,7 @@ kurt = dq.kurtosis(df1_rot, df_bins)
 kurt_flags = kurt > uhl_kr
 
 hard_flags = (data_availability_flags + skew_flags + kurt_flags)
-hard_flags = hard_flags.add(bad_angles_flags, axis = 0)
+hard_flags[['u','v','w']] = hard_flags[['u','v','w']].add(bad_angles_flags, axis=0)
 
 if plot:
     title = f'Количество данных до восстановления пропусков с {start.date()} по {stop.date()} ({avg_period} мин)'
