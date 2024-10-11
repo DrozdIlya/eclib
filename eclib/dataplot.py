@@ -56,7 +56,7 @@ def plot_timeseries(xs=None, ys=None, labels=None, clrs=None, title=None, ylim=N
     ax.tick_params(axis='both', labelsize=textsize)
 
     if filename:
-        plt.savefig(filename, format='png', dpi=100, bbox_inches='tight')
+        plt.savefig(filename, format='png', dpi=50, bbox_inches='tight')
     
     if show:  
         plt.show()

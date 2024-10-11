@@ -95,11 +95,13 @@ def pulsations(ser, df_bins=None, step=None, start=None, stop=None, df_means=Non
     if not df_means:
         df_means = means(ser, df_bins)
 
-
-    for one_avg_period in ser.groupby(df_bins, observed=True):
-        ser.loc[one_avg_period[1].index] -= df_means.loc[one_avg_period[0].left]
+    ind = ser.index[-1]
     
-    puls = ser.loc[:one_avg_period[1].index[-1]]
+    for bins, group in ser.groupby(df_bins, observed=True):
+        ser.loc[group.index, df_means.columns] -= df_means.loc[bins.left]
+        ind = group.index[-1]
+        
+    puls = ser.loc[:ind]
     
     return puls
 

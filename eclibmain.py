@@ -39,19 +39,19 @@ import os
 # stop = pd.to_datetime('2023-11-04 00:00:00')  # Конец обрабатываемого периода
 
 project_name = 'msu'  # Название проекта
-input_data = './test_data/msu/MSU_A3_*.nc'  # Шаблон файлов с исходными данными
+input_data = './test_data/msu/01/MSU_A1_*.nc'  # Шаблон файлов с исходными данными
 output_path = f'./{project_name}'  # Путь, куда будут сохраняться обработанные данные
-z = 18.8  # [m], Высота измерения
+z = 2.2  # [m], Высота измерения
 friquency = 20  # [Hz], Частота исходных данных
 avg_period = 30 # [min], Период осреднения   
-start = pd.to_datetime('2021-08-01 00:00:00')  # Начало обрабатываемого периода 
-stop = pd.to_datetime('2021-08-30 00:00:00')  # Конец обрабатываемого периода
+start = pd.to_datetime('2023-01-01 00:00:00')  # Начало обрабатываемого периода 
+stop = pd.to_datetime('2023-02-01 00:00:00')  # Конец обрабатываемого периода
 
 plot = True  # Отрисовка промежуточной визуализации
 show = False  # Вывод промежуточной визуализации
 output_plot = True  # Отрисовка выходных переменных
 output_show = False  # Вывод визуализации выходных переменных
-console_log = True  # Дублирование лога в консоль
+console_log = False  # Дублирование лога в консоль
 
 step = timedelta(minutes=avg_period) 
 stop += timedelta(microseconds=1)
