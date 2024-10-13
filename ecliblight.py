@@ -62,13 +62,14 @@ def processing(df, avg_period, start, stop, output_path = '.', inplace = False):
     hard_flags = (data_availability_flags + skew_flags + kurt_flags)
     hard_flags[['u','v','w']] = hard_flags[['u','v','w']].add(bad_angles_flags, axis=0)
 
-    counts_before_processing.to_csv(f'{output_path}/{start.date()}-{stop.date()}_counts_before_processing_{avg_period}min.csv')
-    counts_before_gapfilling.to_csv(f'{output_path}/{start.date()}-{stop.date()}_counts_before_gapfilling_{avg_period}min.csv')
-    counts_after_gapfilling.to_csv(f'{output_path}/{start.date()}-{stop.date()}_counts_after_gapfilling_{avg_period}min.csv')
-    bad_angles_counts.to_csv(f'{output_path}/{start.date()}-{stop.date()}_bad_angles_counts_{avg_period}min.csv')
-    skew.to_csv(f'{output_path}/{start.date()}-{stop.date()}_skewness_{avg_period}min.csv')
-    kurt.to_csv(f'{output_path}/{start.date()}-{stop.date()}_kurtosis_{avg_period}min.csv')
-    hard_flags.to_csv(f'{output_path}/{start.date()}-{stop.date()}_hard_flags_{avg_period}min.csv')
+    if output_path:
+        counts_before_processing.to_csv(f'{output_path}/{start.date()}-{stop.date()}_counts_before_processing_{avg_period}min.csv')
+        counts_before_gapfilling.to_csv(f'{output_path}/{start.date()}-{stop.date()}_counts_before_gapfilling_{avg_period}min.csv')
+        counts_after_gapfilling.to_csv(f'{output_path}/{start.date()}-{stop.date()}_counts_after_gapfilling_{avg_period}min.csv')
+        bad_angles_counts.to_csv(f'{output_path}/{start.date()}-{stop.date()}_bad_angles_counts_{avg_period}min.csv')
+        skew.to_csv(f'{output_path}/{start.date()}-{stop.date()}_skewness_{avg_period}min.csv')
+        kurt.to_csv(f'{output_path}/{start.date()}-{stop.date()}_kurtosis_{avg_period}min.csv')
+        hard_flags.to_csv(f'{output_path}/{start.date()}-{stop.date()}_hard_flags_{avg_period}min.csv')
     
     return df1
 
