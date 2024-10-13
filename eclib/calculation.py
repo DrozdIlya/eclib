@@ -89,19 +89,19 @@ def pulsations(ser, df_bins=None, step=None, start=None, stop=None, df_means=Non
     if not inplace: 
         ser = ser.copy()
 
-    if not df_bins: 
+    if df_bins is None: 
         df_bins = create_bins(ser, step, start, stop)
 
-    if not df_means:
+    if df_means is None:
         df_means = means(ser, df_bins)
 
     ind = ser.index[-1]
     
     for bins, group in ser.groupby(df_bins, observed=True):
-        ser.loc[group.index, df_means.columns] -= df_means.loc[bins.left]
+        ser[bins.left:bins.right] = group - df_means.loc[bins.left]
         ind = group.index[-1]
         
-    puls = ser.loc[:ind]
+    puls = ser[:ind]
     
     return puls
 
@@ -144,3 +144,16 @@ def stat_moments(puls, df_bins=None, step=None, start=None, stop=None):
     moments = means(moments, df_bins)
         
     return moments
+
+def wind_dir(u, v):
+    '''
+    Рассчитывает направление ветра 'dir' по направленной на север компоненте 'v' и направленной на восток компоненте 'u'.
+    'u' и 'v' показывают куда дует ветер, 'dir' показывает откуда дует ветер. 
+        
+    Returns
+    -------
+    'dir' : угол по часовой стрелке от направления 'v'.
+    '''
+    dir = 180 + np.degrees(np.arctan2(u, v))
+    dir = np.where(dir_Uh==360, 0, dir)
+    return dir

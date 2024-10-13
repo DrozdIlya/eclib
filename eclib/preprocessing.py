@@ -73,7 +73,7 @@ def find_start_and_lengt(mask):
   
     for i, is_True in enumerate(mask):
         # если встречаем первый раз, запоминаем индекс как начало последовательности
-        if is_True and start is None:
+        if is_True and start:
             start = i
         # если после этого встречаем нормальное значение, 
         # записываем индекс начала последовательности и разницу текущего индекса и индекса начала последовательности
@@ -85,7 +85,7 @@ def find_start_and_lengt(mask):
 
     # Если массив заканчивается на True, 
     # записываем индекс начала и последний индекс массива - индекс начала последовательности
-    if start is not None:
+    if start:
         length = len(mask) - start
         starts.append(start)
         lengths.append(length)
@@ -557,7 +557,7 @@ def axis_rotations(df, D=2, df_bins=None, step=None, start=None, stop=None, u_na
     #     u1u2 = stat_moments(df[[v_name, w_name]], df_bins)
     #     u1u1 = stat_moments(df[[v_name, v_name]], df_bins)
     #     u2u2 = stat_moments(df[[w_name, w_name]], df_bins)
-    #     angles['Psi'] = 0.5 * np.arctan(2 * u1u2 / (u1u1 - u2u2))
+    #     angles['Psi'] = 0.5 * np.arctan(2 * u1u2, (u1u1 - u2u2))
                                  
     #     rotation(df, v_name, w_name, angles.Psi)
     #     log.info("Поворот вокруг оси 'x' выполнен.")
