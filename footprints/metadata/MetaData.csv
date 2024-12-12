@@ -1,0 +1,9 @@
+﻿Название точки,Высота измерения (м),Широта,Долгота,Локация,Прибор,Частота (гц),Ссылка на обработанные данные
+ГО ИМКЭС БДМК,30,56.47494409,85.05434856,г. Томск,AMK-03 15407,80,https://tomskfluxnet.ru/TomskFluxNet/2024/imces/bdmk/
+ГО ИМКЭС БДМК,40,56.47494409,85.05434856,г. Томск,AMK-04 15421,80,https://tomskfluxnet.ru/TomskFluxNet/2024/imces/bdmk/
+ГО ИМКЭС МДМК,2,56.47562337,85.05410044,г. Томск,AMK-03 15418,80,https://tomskfluxnet.ru/TomskFluxNet/2024/imces/mdmk/
+ГО ИМКЭС МДМК,10,56.47562337,85.05410044,г. Томск,AMK-04 15417,80,https://tomskfluxnet.ru/TomskFluxNet/2024/imces/mdmk/
+ГО ИМКЭС Мезонин,30,56.47570843,85.05469721,г. Томск,AMK-03 104,10,https://tomskfluxnet.ru/TomskFluxNet/2024/imces/mezo/
+ОГБУ Облкомприрода,30,56.46718329,84.95745142,г. Томск,AMK-04 19501,20,https://tomskfluxnet.ru/TomskFluxNet/2024/oblkom/
+БЭК ИОА,30,56.48087222,85.10152606,г. Томск,AMK-03 15420 ,80,https://tomskfluxnet.ru/TomskFluxNet/2024/bek/
+д.Воронино,4,56.55772726,85.25610293,г. Томск,AMK-04 19402,20,https://tomskfluxnet.ru/TomskFluxNet/2024/voronino/
