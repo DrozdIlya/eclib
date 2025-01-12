@@ -149,4 +149,5 @@ if __name__ == '__main__':
 
     print('Fluxes computation...')
     df_moments = calculation(df, avg_period, start, stop, output_path)
+    df_moments.to_csv('output.csv')
     
