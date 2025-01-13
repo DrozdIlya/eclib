@@ -126,8 +126,9 @@ def calculation(df, avg_period, start, stop, output_path = '.', inplace = False)
     if output_path:
         df1_means.to_csv(f'{output_path}/{start.date()}-{stop.date()}_moments_{avg_period}min.csv')
         
-        
     return df1_means
+
+
 
 if __name__ == '__main__':
 
