@@ -75,11 +75,11 @@ def processing(df, avg_period, start, stop, output_path = '.', inplace = False):
 
     
     
-def calculation(df, step, start, stop, output_path = '.', inplace = False):
+def calculation(df, avg_period, start, stop, output_path = '.', inplace = False):
 
     start = pd.to_datetime(start)
     stop = pd.to_datetime(stop)
-    step = timedelta(minutes=step) 
+    step = timedelta(minutes=avg_period) 
     stop += timedelta(seconds=1)
 
     if inplace:
